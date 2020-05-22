@@ -1,3 +1,4 @@
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
 
@@ -5,18 +6,23 @@
     <meta charset="utf-8">
 
     {% if title %}
-    <title> La Galerie {{title}}</title>
+    <title>Moringa Tribune - {{title}}</title>
     {% else %}
-    <title> La Galerie </title>
+    <title> Moringa Tribune </title>
     {% endif %}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    {% endblock %}
 
 </head>
 
 <body>
-    {% block content %} 
-    <h1>Loyalty</h1>
-    
-    {%endblock%}
-</body>
+    {% block content %} <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1> {%endblock%}
 
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+    {% endblock %}
+</body>
 </html>
