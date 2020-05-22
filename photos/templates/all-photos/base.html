@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title> La Galerie {{title}}</title>
+    {% else %}
+    <title> La Galerie </title>
+    {% endif %}
+
+</head>
+
+<body>
+    {% block content %} 
+    <h1>Loyalty</h1>
+    
+    {%endblock%}
+</body>
+
+</html>

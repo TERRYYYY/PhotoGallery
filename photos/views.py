@@ -5,3 +5,7 @@ import datetime as dt
 
 def index(request):
     return render(request, 'index.html')
+
+def my_photos(request):
+    date = dt.date.today()
+    return render(request, 'all-photos/gallery.html', {"date": date,})
