@@ -1,6 +1,15 @@
 {%extends 'all-photos/base.html'%}
 
 {% block content %}
-<h1>Trust</h1>
 {{block.super}}
+<div class="container">
+    <div class="row">
+        <div class="card-columns">
+            {% for image in images %}
+            <h1>{{image.image_name}}</h1>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

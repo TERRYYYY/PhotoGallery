@@ -13,5 +13,5 @@ def index(request):
     location = Location.get_location()
     locations = Location.get_location()
 
-    return render(request, 'index.html', {"date": date, "images": images, "location": location, "locations": locations})
+    return render(request, 'all-photos/images.html', {"date": date, "images": images, "location": location, "locations": locations})
     
