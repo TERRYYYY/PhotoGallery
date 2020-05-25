@@ -7,13 +7,14 @@
     <meta charset="utf-8">
 
     {% if title %}
-    <title>Moringa Tribune - {{title}}</title>
+    <title>La Galerie - {{title}}</title>
     {% else %}
-    <title> Moringa Tribune </title>
+    <title> La Galerie </title>
     {% endif %}
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     {% endblock %}
 
 </head>
