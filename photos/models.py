@@ -29,6 +29,11 @@ class Category(models.Model):
     def delete_category(self):
         self.delete()
 
+    @classmethod
+    def search_by_category(cls, search_term):
+        images = cls.objects.filter(category__icontains=search_term)
+        return images
+
 
     def __str__(self):
         return self.category
@@ -48,6 +53,11 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
+
+    @classmethod
+    def search_by_category(cls, search_term):
+        images = cls.objects.filter(category__icontains=search_term)
+        return images
 
     @classmethod
     def get_images(cls):
