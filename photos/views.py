@@ -6,6 +6,6 @@ import datetime as dt
 def index(request):
     return render(request, 'index.html')
 
-def news_of_day(request):
+def gallery(request):
     date = dt.date.today()
-    return render(request, 'all-photos/gallery.html', {"date": date,})
+    return render(request, 'all-photos/images.html', {"date": date,})
