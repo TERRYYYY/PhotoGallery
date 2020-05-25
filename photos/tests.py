@@ -85,7 +85,7 @@ class ImageTestClass(TestCase):
         ordering = ['image_name']
 
     def tearDown(self):
-    Location.objects.all().delete()
-    Category.objects.all().delete()
-    Image.objects.all().delete()   
+        Location.objects.all().delete()
+        Category.objects.all().delete()
+        Image.objects.all().delete()   
 
