@@ -82,7 +82,6 @@ DATABASES = {
         'USER': 'terry',
         'PASSWORD':'2002',
     }
-    }
 }
 
 
