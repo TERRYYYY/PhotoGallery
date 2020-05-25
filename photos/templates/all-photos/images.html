@@ -2,14 +2,19 @@
 
 {% block content %}
 {{block.super}}
-<div class="container">
-    <div class="row">
-        <div class="card-columns">
-            {% for image in images %}
-            <h1>{{image.image_name}}</h1>
-            
-            {% endfor %}
+<div class="container-fluid">
+
+    <div class="grid">
+        <div class="grid-sizer"></div>
+        {% for image in images %}
+        <div class="grid-item">
+
+            <img class="pl-2 pb-1 imagelay" src="{{image.image_file.url}}" 
+                data-toggle="modal" data-target="#img{{image_item.id}}" />
         </div>
+
+        {% endfor %}
     </div>
+
 </div>
 {% endblock %}

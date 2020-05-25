@@ -15,7 +15,7 @@ def index(request):
 
     return render(request, 'all-photos/images.html', {"date": date, "images": images, "location": location, "locations": locations})
 
-def search_results(request):
+def search_images(request):
   locations = Location.get_location()
   if 'keyword' in request.GET and request.GET["keyword"]:
     search_term = request.GET.get("keyword")
