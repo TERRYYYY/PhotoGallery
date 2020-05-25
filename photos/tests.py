@@ -17,6 +17,17 @@ class LocationTestClass(TestCase):
         location = Location.objects.all()
         self.assertTrue(len(location) > 0)
 
+    @classmethod
+    def get_location(cls):
+        locations = cls.objects.all()
+        return locations
+
+    def __str__(self):
+        return self.location
+
+    class Meta:
+        ordering = ['location']
+
 class CategoryTestClass(TestCase):
     
     def setUp(self):
@@ -28,6 +39,12 @@ class CategoryTestClass(TestCase):
 
         category = Category.objects.all()
         self.assertTrue(len(category) > 0)
+
+    def __str__(self):
+        return self.category
+
+    class Meta:
+        ordering = ['category']
 
 class ImageTestClass(TestCase):
     
@@ -43,4 +60,32 @@ class ImageTestClass(TestCase):
 
         images = Image.objects.all()
         self.assertTrue(len(images) == 0)
+
+    @classmethod
+    def get_image(request, id):
+        locations = Location.get_location()
+        try:
+          image = Image.objects.get(pk=id)
+          print(image)
+
+        except ObjectDoesNotExist:
+          raise Http404()
+
+        return image
+
+    @classmethod
+    def get_images(cls):
+        images = cls.objects.all()
+        return images
+
+    def __str__(self):
+        return self.image_name
+
+    class Meta:
+        ordering = ['image_name']
+
+    def tearDown(self):
+    Location.objects.all().delete()
+    Category.objects.all().delete()
+    Image.objects.all().delete()   
 
