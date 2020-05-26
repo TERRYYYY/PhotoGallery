@@ -121,7 +121,6 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
