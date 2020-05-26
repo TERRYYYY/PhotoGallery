@@ -2,22 +2,85 @@
 
 {% block content %}
 {{block.super}}
+<!-- <div class="col-md-6" style="margin-left: 30px;">
+    <img src="https://thumbs.dreamstime.com/z/cartoon-travel-man-backpack-around-world-19325835.jpg" alt="" class="img-responsive" style="height: 280px;width: 320px;">
+</div> -->
+
+<h2 style="font-size: 36px;font-weight: bold;text-align: center;">A picture is worth a thousand words</h2>
+
+    {% for location in locations %}
+
+    
+    <a class="btn btn-light" id="btn" href="/location/{{location}}" style="margin-left: 80px;color: white;background-color: #A0522D;margin-right: 50px;margin-top: 40px;">{{location}}</a>
+    {%endfor%}
+
+
 <div class="container-fluid">
 
     <div class="grid">
         <div class="grid-sizer"></div>
-        {% for image in images %}
+        {% for image_item in images %}
         <div class="grid-item">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <img src="{{image.image_file.url}}" class="img-responsive" alt="Image">
-            </div>
+            <div class="col-md-4">
+                <img class="pl-2 pb-1 imagelay" src="{{image_item.image_file.url}}" height="300px" width="400px" data-toggle="modal"
+                    data-target="#img{{image_item.id}}" style="margin-top: 40px;" />
 
-            <!-- <img src="{{image.image_file.url}}" data-toggle="modal" data-target="#img{{image_item.id}}" /> -->
+            </div>
         </div>
 
         {% endfor %}
     </div>
-    
 
 </div>
+
+
+<!-- Modal starts here -->
+{% for image_item in images %}
+<div class="modal fade" id="img{{image_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background-color: #FFE4B5;">
+            <div class="modal-header">
+                <h5 class="modal-title pt-2 mt-2" id="exampleModal3Label" style="font-size: 40px;text-align: center;">{{ image_item.image_name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <figure class="">
+                    <img class="img-fluid" src="{{image_item.image_file.url}}" style="height: 240px;width: 350px;"></a>
+                    <figcaption>
+                        <h3 class="dark-grey-text">{{ image_item.description }}</h3>
+                        <br>
+                        <!-- Image data -->
+                        <h4>Posted: {{image_item.pub_date|timesince}} ago, <br> Location: <a href="/location/{{image_item.location}}"
+                                class="btn btn-info" style="color: white;"> {{ image_item.location }} </a>
+                            <span> Category: <a href="/category/{{image_item.category}}" class="btn btn-info" style="color: white;">
+                                    {{ image_item.category}}
+                                </a></span>
+                        </h4>
+                        <!-- The text field -->
+                        Copy Image Link: <input class="form-control form-control-sm" type="text"
+                            value="https://nicoleimagelib.herokuapp.com/image/{{image_item.id}}" id="{{image_item.id}}"
+                            readonly="readonly">
+
+                        <!-- The button used to copy the text -->
+                        <!-- <button >Copy Image Link</button> -->
+
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" style="background-color: #A0522D;color: white;">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
 {% endblock %}

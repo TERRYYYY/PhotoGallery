@@ -1,0 +1,98 @@
+{%extends 'all-photos/base.html'%}
+
+{% block content %}
+
+<div class="">
+
+    <div class="">
+        {% if images %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+            <div class="">
+                <h2 class="display-5 text-center font-weight-bold text-white">Found {{ images|length }} images for
+                    {{message}}
+                </h2>
+            </div>
+        </div>
+        {% else %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+            <div class="container">
+                <h2 class="display-5 text-center font-weight-bold text-white">Found 0 images for the {{message}}</h2>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="row container-fluid">
+        <div class="container-fluid">
+    
+            <div class="grid">
+                <div class="grid-sizer"></div>
+                {% for image_item in images %}
+                <div class="grid-item">
+                    <div class="col-md-4">
+                        <img class="pl-2 pb-1" src="{{image_item.image_file.url}}" height="300px" width="400px" data-toggle="modal"
+                            data-target="#img{{image_item.id}}" style="margin-top: 35px;" />
+                    </div>
+    
+                </div>
+    
+                {% endfor %}
+            </div>
+    
+        </div>
+    </div>
+    </div>
+    
+    
+    <!-- Modal starts here -->
+    {% for image_item in images %}
+    <div class="modal fade" id="img{{image_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color: #FFE4B5;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal3Label" style="font-size: 40px;text-align: center;">{{ image_item.image_name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+    
+                    <div>
+                        <figure class="">
+                            <img class="img-fluid" src="{{image_item.image_file.url}}" style="height: 230px;width: 340px;"></a>
+                            <figcaption>
+                                <!-- Excerpt -->
+                                <h3 class="dark-grey-text">{{ image_item.description }}</h3>
+                                <!-- Image data -->
+                                <br>
+                                <h4>Posted: {{image_item.pub_date|timesince}} ago, <br> Location: <a
+                                        href="/location/{{image_item.location}}" class="btn btn-info" style="color: white;"> {{ image_item.location }} </a> 
+                                    <span> Category: <a href="/category/{{image_item.category}}" class="btn btn-info" style="color: white;"> {{ image_item.category}}
+                                        </a></span>
+                                </h4>
+                                <!-- The text field -->
+                                <div id="copylink">
+                                    Copy Image Link: <input class="form-control form-control-sm" type="text"
+                                        value="https://jogallery.herokuapp.com/image/{{image_item.id}}"
+                                        id="{{image_item.id}}" readonly="readonly">
+                                </div>
+    
+                            </figcaption>
+                        </figure>
+                    </div>
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    
+    
+    {% endblock %}

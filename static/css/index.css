@@ -2,3 +2,7 @@ h1{
     color:blueviolet;
     font-size: 30px;
 }
+body{
+    background-image: url(../pics/rainbow.jpg);
+    background-size: cover;
+}

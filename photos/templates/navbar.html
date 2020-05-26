@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <nav class="navbar navbar-dark bg-dark" style="padding: 15px;background-color:gray">
+        <nav class="navbar navbar-dark bg-dark" style="padding: 15px;background-color: #F4A460;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{% url 'index' %}" style="color: black;font-size: 38px;font-weight: bolder;">La Galerie</a>
@@ -27,16 +27,20 @@
                             <a class="nav-link" href="{% url 'index' %}" style="color: black;margin-right: 30px;font-size: 18px;text-decoration: none;margin-left: 50px;">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" style="text-decoration: none;color: black;font-size: 18px;">
                                 Locations
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#" style="font-size: 18px;">Kenya</a>
+                                {% for location in locations %}
+                                <a class="dropdown-item" id="btn" href="/location/{{location}}" style="margin-left: 50px;color:black;font-size: 18px;">{{location}}</a>
+                                {%endfor%}
+
+                                <!-- <a class="dropdown-item" href="#" style="font-size: 18px;">Kenya</a>
                                 <a class="dropdown-item" href="#" style="font-size: 18px;margin-right: 30px;">Indonesia</a>
                                 <a class="dropdown-item" href="#" style="font-size: 18px;margin-right: 30px;">Brazil</a>
                                 <a class="dropdown-item" href="#" style="font-size: 18px;margin-right: 30px;">Philippines</a>
-                                <a class="dropdown-item" href="#" style="font-size: 18px;margin-right: 30px;">Thailand</a>
+                                <a class="dropdown-item" href="#" style="font-size: 18px;margin-right: 30px;">Thailand</a> -->
                             </div>
                         </li>
                     </ul>
@@ -47,7 +51,7 @@
                     <form class="navbar-form" role="search" action="{% url 'search_images' %}">
                 
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search By Category" name="category">
+                            <input type="text" class="form-control" placeholder="Search By Category" aria-label="Search" name="keyword">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                             </div>
